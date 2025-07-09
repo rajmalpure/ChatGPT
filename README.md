@@ -1,6 +1,6 @@
-# 💬 ChatGPT Clone using Assistant UI
+# 💡 ChatGPT Clone :-
 
-A sleek and powerful AI chatbot clone built using the [Assistant UI](https://github.com/pmbanugo/assistant-ui), designed to replicate ChatGPT’s conversational experience with modern design and functionality.
+A sleek and powerful AI chatbot clone built using the Assistant UI, designed to replicate ChatGPT’s conversational experience with modern design and functionality.
 
 ## 🚀 Features
 

@@ -7,7 +7,6 @@ A sleek and powerful AI chatbot clone built using the Assistant UI, designed to 
 - 🔥 Beautiful and responsive ChatGPT-style UI
 - 💡 Smart AI responses using Gemini API
 - 💬 Real-time conversational experience
-- 🌙 Dark/Light mode support
 - 📜 Conversation history (local/session)
 - 📲 Mobile-friendly layout
 

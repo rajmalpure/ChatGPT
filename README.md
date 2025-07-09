@@ -39,6 +39,3 @@ Render
 
 
 
-
-
-https://chat-gpt-fawn-mu.vercel.app/

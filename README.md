@@ -5,7 +5,7 @@ A sleek and powerful AI chatbot clone built using the Assistant UI, designed to 
 ## 🚀 Features
 
 - 🔥 Beautiful and responsive ChatGPT-style UI
-- 💡 Smart AI responses using OpenAI or Gemini API
+- 💡 Smart AI responses using Gemini API
 - 💬 Real-time conversational experience
 - 🌙 Dark/Light mode support
 - 📜 Conversation history (local/session)
@@ -14,11 +14,30 @@ A sleek and powerful AI chatbot clone built using the Assistant UI, designed to 
 ## 🛠 Tech Stack
 
 - **Frontend:** React + Assistant UI
-- **API Integration:** OpenAI GPT-4 / Gemini API
+- **API Integration:** Gemini API
 - **Styling:** Tailwind CSS
-- **Deployment:** Vercel / Netlify / Render (optional backend)
+- **Deployment:** Vercel  / Render (optional backend)
 
-## 🧱 Project Structure
+## 🌐 Live Demo
+🔗 [Live Demo](https://chat-gpt-fawn-mu.vercel.app/)
+
+📸 Screenshots
+Add screenshot links if available.
+
+Chat Interface	Mobile View
+
+## 📦 Deployment
+You can deploy this project on any of the following platforms:
+
+Vercel
+
+Netlify
+
+Render
+
+
+
+
 
 
 

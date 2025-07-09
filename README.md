@@ -21,10 +21,10 @@ A sleek and powerful AI chatbot clone built using the Assistant UI, designed to 
 ## 🌐 Live Demo
 🔗 [Live Demo](https://chat-gpt-fawn-mu.vercel.app/)
 
-📸 Screenshots
-Add screenshot links if available.
+## 📸 
 
-Chat Interface	Mobile View
+Chat Interface - ![image](https://github.com/user-attachments/assets/38dbbe10-a79d-40a6-a425-6f0fea713ee6)
+
 
 ## 📦 Deployment
 You can deploy this project on any of the following platforms:

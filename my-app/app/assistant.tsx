@@ -7,6 +7,8 @@ import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/s
 import { AppSidebar } from "@/components/app-sidebar";
 import { Separator } from "@/components/ui/separator";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
+import { FloatingOrbs } from "@/components/3d/floating-orbs";
+import { ParticlesBackground } from "@/components/3d/particles-bg";
 
 export const Assistant = () => {
   const runtime = useChatRuntime({
@@ -15,6 +17,8 @@ export const Assistant = () => {
 
   return (
     <AssistantRuntimeProvider runtime={runtime}>
+      <FloatingOrbs />
+      <ParticlesBackground />
       <SidebarProvider>
         <AppSidebar />
         <SidebarInset>

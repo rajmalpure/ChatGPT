@@ -12,6 +12,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 import { ThreadList } from "./assistant-ui/thread-list"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -39,20 +40,21 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarRail />
       <SidebarFooter>
         <SidebarMenu>
-         
           <SidebarMenuItem>
-            <SidebarMenuButton size="lg" asChild>
-              <Link href="https://github.com/assistant-ui/assistant-ui" target="_blank">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                  <Github className="size-4" />
-                </div>
-                <div className="flex flex-col gap-0.5 leading-none">
-                  <span className="font-semibold">GitHub</span>
-                  <span className="">View Source</span>
-                </div>
-              </Link>
-            </SidebarMenuButton>
-            
+            <div className="flex items-center justify-between px-2 py-2">
+              <SidebarMenuButton size="lg" asChild className="flex-1">
+                <Link href="https://github.com/assistant-ui/assistant-ui" target="_blank">
+                  <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                    <Github className="size-4" />
+                  </div>
+                  <div className="flex flex-col gap-0.5 leading-none">
+                    <span className="font-semibold">GitHub</span>
+                    <span className="">View Source</span>
+                  </div>
+                </Link>
+              </SidebarMenuButton>
+              <ThemeToggle />
+            </div>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>

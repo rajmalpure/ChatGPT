@@ -17,6 +17,7 @@ import {
   SendHorizontalIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
 import { MarkdownText } from "@/components/assistant-ui/markdown-text";
@@ -72,54 +73,95 @@ const ThreadScrollToBottom: FC = () => {
 const ThreadWelcome: FC = () => {
   return (
     <ThreadPrimitive.Empty>
-      <div className="flex w-full max-w-[var(--thread-max-width)] flex-grow flex-col">
+      <motion.div 
+        className="flex w-full max-w-[var(--thread-max-width)] flex-grow flex-col"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      >
         <div className="flex w-full flex-grow flex-col items-center justify-center">
-          <p className="mt-4 font-medium">How can I help you today?</p>
+          <motion.p 
+            className="mt-4 font-medium text-2xl"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.4 }}
+          >
+            How can I help you today?
+          </motion.p>
         </div>
         <ThreadWelcomeSuggestions />
-      </div>
+      </motion.div>
     </ThreadPrimitive.Empty>
   );
 };
 
 const ThreadWelcomeSuggestions: FC = () => {
+  const suggestions = [
+    "What is the weather in Tokyo?",
+    "What is assistant-ui?"
+  ];
+  
   return (
-    <div className="mt-3 flex w-full items-stretch justify-center gap-4">
-      <ThreadPrimitive.Suggestion
-        className="hover:bg-muted/80 flex max-w-sm grow basis-0 flex-col items-center justify-center rounded-lg border p-3 transition-colors ease-in"
-        prompt="What is the weather in Tokyo?"
-        method="replace"
-        autoSend
-      >
-        <span className="line-clamp-2 text-ellipsis text-sm font-semibold">
-          What is the weather in Tokyo?
-        </span>
-      </ThreadPrimitive.Suggestion>
-      <ThreadPrimitive.Suggestion
-        className="hover:bg-muted/80 flex max-w-sm grow basis-0 flex-col items-center justify-center rounded-lg border p-3 transition-colors ease-in"
-        prompt="What is assistant-ui?"
-        method="replace"
-        autoSend
-      >
-        <span className="line-clamp-2 text-ellipsis text-sm font-semibold">
-          What is assistant-ui?
-        </span>
-      </ThreadPrimitive.Suggestion>
-    </div>
+    <motion.div 
+      className="mt-3 flex w-full items-stretch justify-center gap-4"
+      initial="hidden"
+      animate="visible"
+      variants={{
+        hidden: { opacity: 0 },
+        visible: {
+          opacity: 1,
+          transition: {
+            staggerChildren: 0.1,
+            delayChildren: 0.3
+          }
+        }
+      }}
+    >
+      {suggestions.map((prompt, index) => (
+        <motion.div
+          key={index}
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0 }
+          }}
+          whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+          whileTap={{ scale: 0.98 }}
+          className="flex-1 max-w-sm"
+        >
+          <ThreadPrimitive.Suggestion
+            className="hover:bg-muted/80 flex w-full h-full flex-col items-center justify-center rounded-lg border p-3 transition-all duration-200 ease-in hover:shadow-md"
+            prompt={prompt}
+            method="replace"
+            autoSend
+          >
+            <span className="line-clamp-2 text-ellipsis text-sm font-semibold">
+              {prompt}
+            </span>
+          </ThreadPrimitive.Suggestion>
+        </motion.div>
+      ))}
+    </motion.div>
   );
 };
 
 const Composer: FC = () => {
   return (
-    <ComposerPrimitive.Root className="focus-within:border-ring/20 flex w-full flex-wrap items-end rounded-lg border bg-inherit px-2.5 shadow-sm transition-colors ease-in">
-      <ComposerPrimitive.Input
-        rows={1}
-        autoFocus
-        placeholder="Write a message..."
-        className="placeholder:text-muted-foreground max-h-40 flex-grow resize-none border-none bg-transparent px-2 py-4 text-sm outline-none focus:ring-0 disabled:cursor-not-allowed"
-      />
-      <ComposerAction />
-    </ComposerPrimitive.Root>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: 0.2 }}
+      className="w-full"
+    >
+      <ComposerPrimitive.Root className="focus-within:border-ring/20 focus-within:shadow-lg flex w-full flex-wrap items-end rounded-lg border bg-inherit px-2.5 shadow-sm transition-all duration-200 ease-in">
+        <ComposerPrimitive.Input
+          rows={1}
+          autoFocus
+          placeholder="Write a message..."
+          className="placeholder:text-muted-foreground max-h-40 flex-grow resize-none border-none bg-transparent px-2 py-4 text-sm outline-none focus:ring-0 disabled:cursor-not-allowed"
+        />
+        <ComposerAction />
+      </ComposerPrimitive.Root>
+    </motion.div>
   );
 };
 
@@ -154,15 +196,26 @@ const ComposerAction: FC = () => {
 
 const UserMessage: FC = () => {
   return (
-    <MessagePrimitive.Root className="grid auto-rows-auto grid-cols-[minmax(72px,1fr)_auto] gap-y-2 [&:where(>*)]:col-start-2 w-full max-w-[var(--thread-max-width)] py-4">
-      <UserActionBar />
+    <motion.div
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+    >
+      <MessagePrimitive.Root className="grid auto-rows-auto grid-cols-[minmax(72px,1fr)_auto] gap-y-2 [&:where(>*)]:col-start-2 w-full max-w-[var(--thread-max-width)] py-4">
+        <UserActionBar />
 
-      <div className="bg-muted text-foreground max-w-[calc(var(--thread-max-width)*0.8)] break-words rounded-3xl px-5 py-2.5 col-start-2 row-start-2">
-        <MessagePrimitive.Content />
-      </div>
+        <motion.div 
+          className="bg-muted text-foreground max-w-[calc(var(--thread-max-width)*0.8)] break-words rounded-3xl px-5 py-2.5 col-start-2 row-start-2"
+          initial={{ scale: 0.95 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.2 }}
+        >
+          <MessagePrimitive.Content />
+        </motion.div>
 
-      <BranchPicker className="col-span-full col-start-1 row-start-3 -mr-1 justify-end" />
-    </MessagePrimitive.Root>
+        <BranchPicker className="col-span-full col-start-1 row-start-3 -mr-1 justify-end" />
+      </MessagePrimitive.Root>
+    </motion.div>
   );
 };
 
@@ -201,17 +254,28 @@ const EditComposer: FC = () => {
 
 const AssistantMessage: FC = () => {
   return (
-    <MessagePrimitive.Root className="grid grid-cols-[auto_auto_1fr] grid-rows-[auto_1fr] relative w-full max-w-[var(--thread-max-width)] py-4">
-      <div className="text-foreground max-w-[calc(var(--thread-max-width)*0.8)] break-words leading-7 col-span-2 col-start-2 row-start-1 my-1.5">
-        <MessagePrimitive.Content
-          components={{ Text: MarkdownText, tools: { Fallback: ToolFallback } }}
-        />
-      </div>
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+    >
+      <MessagePrimitive.Root className="grid grid-cols-[auto_auto_1fr] grid-rows-[auto_1fr] relative w-full max-w-[var(--thread-max-width)] py-4">
+        <motion.div 
+          className="text-foreground max-w-[calc(var(--thread-max-width)*0.8)] break-words leading-7 col-span-2 col-start-2 row-start-1 my-1.5"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.1 }}
+        >
+          <MessagePrimitive.Content
+            components={{ Text: MarkdownText, tools: { Fallback: ToolFallback } }}
+          />
+        </motion.div>
 
-      <AssistantActionBar />
+        <AssistantActionBar />
 
-      <BranchPicker className="col-start-2 row-start-2 -ml-2 mr-2" />
-    </MessagePrimitive.Root>
+        <BranchPicker className="col-start-2 row-start-2 -ml-2 mr-2" />
+      </MessagePrimitive.Root>
+    </motion.div>
   );
 };
 

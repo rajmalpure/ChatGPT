@@ -4,8 +4,10 @@ import {
   ComposerPrimitive,
   MessagePrimitive,
   ThreadPrimitive,
+  useComposerRuntime,
 } from "@assistant-ui/react";
 import type { FC } from "react";
+import React from "react";
 import {
   ArrowDownIcon,
   CheckIcon,
@@ -15,6 +17,7 @@ import {
   PencilIcon,
   RefreshCwIcon,
   SendHorizontalIcon,
+  Paperclip,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
@@ -24,6 +27,7 @@ import { MarkdownText } from "@/components/assistant-ui/markdown-text";
 import { TooltipIconButton } from "@/components/assistant-ui/tooltip-icon-button";
 import { ToolFallback } from "./tool-fallback";
 import { Card3D } from "@/components/3d/card-3d";
+import { FileUpload } from "./file-upload";
 
 export const Thread: FC = () => {
   return (
@@ -216,6 +220,8 @@ const ThreadWelcomeSuggestions: FC = () => {
 };
 
 const Composer: FC = () => {
+  const [uploadedFiles, setUploadedFiles] = React.useState<Array<{name: string, size: number, type: string, url: string, file: File}>>([]);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -226,24 +232,33 @@ const Composer: FC = () => {
       style={{ transformStyle: "preserve-3d" }}
     >
       <ComposerPrimitive.Root 
-        className="focus-within:border-ring/20 flex w-full flex-wrap items-end rounded-lg border bg-inherit px-2.5 shadow-sm transition-all duration-200 ease-in backdrop-blur-sm"
+        className="focus-within:border-ring/20 flex w-full flex-col rounded-lg border bg-inherit shadow-sm transition-all duration-200 ease-in backdrop-blur-sm"
         style={{
           boxShadow: "0 10px 40px -10px rgba(139, 92, 246, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)"
         }}
       >
-        <ComposerPrimitive.Input
-          rows={1}
-          autoFocus
-          placeholder="Write a message..."
-          className="placeholder:text-muted-foreground max-h-40 flex-grow resize-none border-none bg-transparent px-2 py-4 text-sm outline-none focus:ring-0 disabled:cursor-not-allowed"
+        <FileUpload 
+          files={uploadedFiles} 
+          setFiles={setUploadedFiles}
+          onFilesChange={(files) => {
+            console.log('Files attached:', files.map(f => f.name));
+          }} 
         />
-        <ComposerAction />
+        <div className="flex items-end">
+          <ComposerPrimitive.Input
+            rows={1}
+            autoFocus
+            placeholder={uploadedFiles.length > 0 ? `${uploadedFiles.length} file(s) attached. Write a message...` : "Write a message..."}
+            className="placeholder:text-muted-foreground max-h-40 flex-grow resize-none border-none bg-transparent px-4 py-4 text-sm outline-none focus:ring-0 disabled:cursor-not-allowed"
+          />
+          <ComposerAction files={uploadedFiles} onClearFiles={() => setUploadedFiles([])} />
+        </div>
       </ComposerPrimitive.Root>
     </motion.div>
   );
 };
 
-const ComposerAction: FC = () => {
+const ComposerAction: FC<{ files?: Array<{name: string, size: number, type: string, url: string, file: File}>, onClearFiles?: () => void }> = ({ files = [], onClearFiles }) => {
   return (
     <>
       <ThreadPrimitive.If running={false}>
@@ -252,6 +267,12 @@ const ComposerAction: FC = () => {
             tooltip="Send"
             variant="default"
             className="my-2.5 size-8 p-2 transition-opacity ease-in"
+            onClick={() => {
+              // Clear files after sending
+              setTimeout(() => {
+                onClearFiles?.();
+              }, 100);
+            }}
           >
             <SendHorizontalIcon />
           </TooltipIconButton>

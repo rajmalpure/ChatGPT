@@ -4,7 +4,6 @@ import {
   ComposerPrimitive,
   MessagePrimitive,
   ThreadPrimitive,
-  useComposerRuntime,
 } from "@assistant-ui/react";
 import type { FC } from "react";
 import React from "react";
@@ -17,10 +16,9 @@ import {
   PencilIcon,
   RefreshCwIcon,
   SendHorizontalIcon,
-  Paperclip,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
 import { MarkdownText } from "@/components/assistant-ui/markdown-text";
@@ -258,7 +256,7 @@ const Composer: FC = () => {
   );
 };
 
-const ComposerAction: FC<{ files?: Array<{name: string, size: number, type: string, url: string, file: File}>, onClearFiles?: () => void }> = ({ files = [], onClearFiles }) => {
+const ComposerAction: FC<{ files?: Array<{name: string, size: number, type: string, url: string, file: File}>, onClearFiles?: () => void }> = ({ onClearFiles }) => {
   return (
     <>
       <ThreadPrimitive.If running={false}>

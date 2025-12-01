@@ -1,7 +1,7 @@
 "use client"
 
-import { useState, useRef } from "react"
-import { Paperclip, X, Image as ImageIcon, FileText } from "lucide-react"
+import { useRef } from "react"
+import { Paperclip, X, FileText } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
 export interface UploadedFile {

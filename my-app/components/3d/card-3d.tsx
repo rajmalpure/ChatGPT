@@ -13,9 +13,7 @@ interface Card3DProps {
 export function Card3D({ children, className = "", intensity = 15 }: Card3DProps) {
   const ref = useRef<HTMLDivElement>(null)
 
-  const [{ x, y, rotateX, rotateY, scale }, api] = useSpring(() => ({
-    x: 0,
-    y: 0,
+  const [{ rotateX, rotateY, scale }, api] = useSpring(() => ({
     rotateX: 0,
     rotateY: 0,
     scale: 1,

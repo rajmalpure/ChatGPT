@@ -18,11 +18,11 @@ A sleek and powerful AI chatbot clone built using the Assistant UI, designed to 
 - **Deployment:** Vercel  / Render (optional backend)
 
 ## 🌐 Live Demo
-🔗 [Live Demo](https://chat-gpt-fawn-mu.vercel.app/)
+🔗 [Live Demo](https://raj-aichat.vercel.app/)
 
 ## 📸 
 
-Chat Interface - ![image](https://github.com/user-attachments/assets/38dbbe10-a79d-40a6-a425-6f0fea713ee6)
+Chat Interface - ![image](<img width="1919" height="919" alt="image" src="https://github.com/user-attachments/assets/4875dfe1-e9db-4f5a-97fb-4ee1df6db4da" />)
 
 
 ## 🙌 Acknowledgements

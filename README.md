@@ -24,7 +24,6 @@ A sleek and powerful AI chatbot clone built using the Assistant UI, designed to 
 
 Chat Interface - ![image](<img width="1919" height="919" alt="image" src="https://github.com/user-attachments/assets/4875dfe1-e9db-4f5a-97fb-4ee1df6db4da" />)
 
-
 ## 🙌 Acknowledgements
 Assistant UI
 
